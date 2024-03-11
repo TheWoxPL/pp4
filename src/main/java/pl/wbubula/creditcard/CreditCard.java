@@ -18,6 +18,7 @@ public class CreditCard {
 
         }
         this.creditLimit = creditLimit;
+        this.creditBalance = creditLimit;
     }
 
     private boolean isCreditCardAlreadyAssigned() {
@@ -37,7 +38,7 @@ public class CreditCard {
     }
 
     public void pay(BigDecimal money) {
-        if(this.creditBalance.subtract(money).compareTo(BigDecimal.ZERO) > 0){
+        if(this.creditBalance.subtract(money).compareTo(BigDecimal.ZERO) < 0){
             throw new NotEnoughMoneyException();
         }
 
