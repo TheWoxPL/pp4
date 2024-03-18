@@ -1,0 +1,1 @@
+Testy sprawdzajace czy mozna dodac produkt bez opisu i obrazka, cos takiego
