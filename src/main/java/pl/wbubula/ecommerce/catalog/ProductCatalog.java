@@ -7,7 +7,6 @@ import java.util.UUID;
 
 public class ProductCatalog {
 
-
     private ArrayList<Product> products;
 
     public ProductCatalog() {
@@ -20,22 +19,21 @@ public class ProductCatalog {
 
     public String addProduct(String name, String description, BigDecimal price) {
         UUID id = UUID.randomUUID();
-        Product newProduct = new Product(id, name, description, price);
+        Product newProduct = new Product(id, name, description,price);
+
 
         products.add(newProduct);
-
         return newProduct.getId();
     }
 
-    public Product getProductById(String id) {
-        return products.stream()
-                .filter(product -> product.getId().equals(id))
-                .findFirst()
-                .get();
+    public void changePrice(String id, BigDecimal newPrice) {
+        Product loaded = this.getProductBy(id);
+        loaded.changePrice(newPrice);
     }
 
-    public void changePrice(String id, BigDecimal newPrice) {
-        Product loaded = this.getProductById(id);
-        loaded.changePrice(newPrice);
+    public Product getProductBy(String id) {
+        return products.stream().filter(product -> product.getId().equals(id))
+                .findFirst()
+                .get();
     }
 }
