@@ -7,33 +7,33 @@ import java.util.UUID;
 
 public class ProductCatalog {
 
-    private ArrayList<Product> products;
+    ProductStorage productStorage;
 
     public ProductCatalog() {
-        this.products = new ArrayList<>();
+        this.productStorage = new ArrayListProductStorage();
     }
 
     public List<Product> allProducts() {
-        return products;
+        return productStorage.getAllProducts();
     }
 
     public String addProduct(String name, String description, BigDecimal price) {
         UUID id = UUID.randomUUID();
         Product newProduct = new Product(id, name, description,price);
 
-
-        products.add(newProduct);
+        productStorage.add(newProduct);
         return newProduct.getId();
     }
 
     public void changePrice(String id, BigDecimal newPrice) {
-        Product loaded = this.getProductBy(id);
+        Product loaded = this.getProductById(id);
         loaded.changePrice(newPrice);
     }
 
-    public Product getProductBy(String id) {
-        return products.stream().filter(product -> product.getId().equals(id))
-                .findFirst()
-                .get();
+    public Product getProductById(String id) {
+        return productStorage.getProductById(id);
+
     }
+
+
 }
