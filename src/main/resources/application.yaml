@@ -1,0 +1,15 @@
+#src/main/resources/applications.yaml
+server:
+  port: 8888
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password: ~
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
