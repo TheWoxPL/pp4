@@ -1,21 +1,13 @@
 package pl.wbubula.ecommerce.catalog;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
-@Service
-public class ProductStorageRepository {
+@Repository
+public class ProductStorageRepository implements ProductStorage{
 
 
     private JdbcTemplate jdbcTemplate;
@@ -24,8 +16,23 @@ public class ProductStorageRepository {
         this.jdbcTemplate=jdbcTemplate;
     }
 
-    public String getString() {
+    public List<Map<String, Object>> getString() {
         List<Map<String, Object>> list =  jdbcTemplate.queryForList("Select '1', '2';");
-        return list.toString();
+        return list;
+    }
+
+    @Override
+    public void add(Product newProduct) {
+
+    }
+
+    @Override
+    public Product getProductById(String id) {
+        return null;
+    }
+
+    @Override
+    public List<Product> getAllProducts() {
+        return null;
     }
 }

@@ -9,10 +9,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.test.context.ContextConfiguration;
 import pl.wbubula.ecommerce.catalog.ProductStorageRepository;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-@ContextConfiguration
 public class MyTest {
 
     @Autowired
@@ -26,9 +27,9 @@ public class MyTest {
 
     @Test
     void test(){
-        String str = productStorageRepository.getString();
+        List str = productStorageRepository.getString();
         System.out.println("test");
-        System.out.println(str);
+        System.out.println(str.getClass());
     }
 
     @Test
