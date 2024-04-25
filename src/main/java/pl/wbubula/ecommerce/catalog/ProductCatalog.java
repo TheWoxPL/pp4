@@ -1,16 +1,22 @@
 package pl.wbubula.ecommerce.catalog;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 public class ProductCatalog {
 
-    ProductStorage productStorage;
+//    ProductStorage productStorage;
+    @Autowired
+    JdbcTemplate jdbcTemplate;
+    SqlProductStorage productStorage = new SqlProductStorage(jdbcTemplate);
 
-    public ProductCatalog() {
-        this.productStorage = new ArrayListProductStorage();
+    @Autowired
+    public ProductCatalog(SqlProductStorage productStorage) {
+        this.productStorage = productStorage;
     }
 
     public List<Product> allProducts() {
@@ -19,15 +25,14 @@ public class ProductCatalog {
 
     public String addProduct(String name, String description, BigDecimal price) {
         UUID id = UUID.randomUUID();
-        Product newProduct = new Product(id, name, description,price);
+        Product newProduct = new Product(id, name, description, price);
 
         productStorage.add(newProduct);
         return newProduct.getId();
     }
 
     public void changePrice(String id, BigDecimal newPrice) {
-        Product loaded = this.getProductById(id);
-        loaded.changePrice(newPrice);
+        productStorage.changePrice(id, newPrice);
     }
 
     public Product getProductById(String id) {
