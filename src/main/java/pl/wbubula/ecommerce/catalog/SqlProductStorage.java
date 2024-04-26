@@ -1,14 +1,11 @@
 package pl.wbubula.ecommerce.catalog;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 @Component
@@ -33,7 +30,6 @@ public class SqlProductStorage implements ProductStorage{
             
         """;
         jdbcTemplate.execute(createTableSql);
-
     }
     
     @Override
@@ -63,27 +59,24 @@ public class SqlProductStorage implements ProductStorage{
                     myProduct.changePrice(BigDecimal.valueOf((rs.getDouble("price"))));
                     return myProduct;
                 }
-
-
         );
         return loadedProduct;
-
     }
 
     @Override
     public List<Product> getAllProducts() {
-        var query="SELECT * FROM `product_catalog__products`";
-
-        List<Product> products = jdbcTemplate.query(
-                query,
-                new BeanPropertyRowMapper<>(Product.class)
-        );
-        return products;
+        String selectProductSql = "SELECT * FROM product_catalog__products";
+        return jdbcTemplate.query(selectProductSql, (rs, rowNum) -> {
+            UUID id = UUID.fromString(rs.getString("id"));
+            String name = rs.getString("name");
+            String description = rs.getString("description");
+            BigDecimal price = BigDecimal.valueOf(rs.getDouble("price"));
+            return new Product(id, name, description, price);
+        });
     }
+
     public void changePrice(String id, BigDecimal newPrice) {
         String query = "UPDATE `product_catalog__products` SET price = ? WHERE id = ?";
         jdbcTemplate.update(query, newPrice, id);
-
     }
-
 }

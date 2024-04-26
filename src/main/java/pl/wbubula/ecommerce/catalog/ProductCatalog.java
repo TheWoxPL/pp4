@@ -9,14 +9,18 @@ import java.util.UUID;
 
 public class ProductCatalog {
 
-//    ProductStorage productStorage;
+
     @Autowired
     JdbcTemplate jdbcTemplate;
-    SqlProductStorage productStorage = new SqlProductStorage(jdbcTemplate);
+    SqlProductStorage productStorage;
 
     @Autowired
     public ProductCatalog(SqlProductStorage productStorage) {
         this.productStorage = productStorage;
+    }
+
+    public void setUpDatabase(){
+        productStorage.setUpDatabase();
     }
 
     public List<Product> allProducts() {
@@ -37,8 +41,5 @@ public class ProductCatalog {
 
     public Product getProductById(String id) {
         return productStorage.getProductById(id);
-
     }
-
-
 }

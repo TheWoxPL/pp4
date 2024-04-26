@@ -23,7 +23,7 @@ public class ProductCatalogTest {
     @BeforeEach
     void setUpDb() {
         ProductCatalog catalog = new ProductCatalog(sqlProductStorage);
-        catalog.productStorage.setUpDatabase();
+        catalog.setUpDatabase();
     }
 
 
@@ -52,7 +52,6 @@ public class ProductCatalogTest {
        catalog.addProduct("Lego set 8083", "Nice one", BigDecimal.valueOf(100));
         catalog.allProducts();
        products = catalog.allProducts();
-
 
         assertThat(products)
                 .hasSize(4);

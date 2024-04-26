@@ -17,6 +17,11 @@ public class HasMapProductStorage implements ProductStorage {
     }
 
     @Override
+    public void setUpDatabase() {
+
+    }
+
+    @Override
     public Product getProductById(String id) {
         return products.get(id);
     }
