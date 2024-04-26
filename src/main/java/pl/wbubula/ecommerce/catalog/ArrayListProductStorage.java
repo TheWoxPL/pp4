@@ -18,6 +18,11 @@ public class ArrayListProductStorage implements ProductStorage {
     }
 
     @Override
+    public void setUpDatabase() {
+
+    }
+
+    @Override
     public Product getProductById(String id) {
         return products.stream().filter(product -> product.getId().equals(id))
                 .findFirst()
@@ -28,6 +33,5 @@ public class ArrayListProductStorage implements ProductStorage {
     public List<Product> getAllProducts() {
         return Collections.unmodifiableList(products);
     }
-
 
 }
