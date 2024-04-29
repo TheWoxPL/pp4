@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @Component
 public class SqlProductStorage implements ProductStorage{
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
     public SqlProductStorage(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate=jdbcTemplate;
@@ -37,7 +37,7 @@ public class SqlProductStorage implements ProductStorage{
         var myInsertSql = String.format("""
             INSERT INTO `product_catalog__products` (id, name, description, price)
             VALUES
-                ('%s', '%s', '%s', %.2f)
+                ('%s', '%s', '%s', %.0f)
             ;
         """,newProduct.getId(), newProduct.getName(), newProduct.getDescription(), newProduct.getPrice());
         jdbcTemplate.execute(myInsertSql);

@@ -24,12 +24,19 @@ public class ProductCatalogTest {
     void setUpDb() {
         ProductCatalog catalog = new ProductCatalog(sqlProductStorage);
         catalog.setUpDatabase();
+
     }
 
 
     @Test
     void nothing(){
+        ProductCatalog catalog = new ProductCatalog(sqlProductStorage);
+        catalog.setUpDatabase();
+        catalog.addProduct("Lego set 8083", "Nice one", BigDecimal.valueOf(100));
+        catalog.addProduct("Lego set 8083", "Nice one", BigDecimal.valueOf(100));
+        catalog.addProduct("Lego set 8083", "Nice one", BigDecimal.valueOf(100));
 
+        System.out.print(catalog.allProducts().get(0).getName());
     }
 
     @Test
