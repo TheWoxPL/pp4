@@ -16,6 +16,7 @@ public class SqlProductStorage implements ProductStorage{
         this.jdbcTemplate=jdbcTemplate;
     }
 
+
     public void setUpDatabase(){
         jdbcTemplate.execute("DROP TABLE `product_catalog__products` IF EXISTS;");
 
