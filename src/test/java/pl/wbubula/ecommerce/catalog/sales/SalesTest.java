@@ -3,6 +3,7 @@ package pl.wbubula.ecommerce.catalog.sales;
 import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import static org.junit.jupiter.api.Assertions.*;
+import pl.wbubula.ecommerce.catalog.sales.Offer;
 
 public class SalesTest {
     @Test
