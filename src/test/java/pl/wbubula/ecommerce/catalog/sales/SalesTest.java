@@ -3,7 +3,10 @@ package pl.wbubula.ecommerce.catalog.sales;
 import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import static org.junit.jupiter.api.Assertions.*;
-import pl.wbubula.ecommerce.catalog.sales.Offer;
+
+import pl.wbubula.ecommerce.catalog.sales.cart.InMemoryCartStorage;
+import pl.wbubula.ecommerce.catalog.sales.offer.Offer;
+import pl.wbubula.ecommerce.catalog.sales.offer.OfferCalculator;
 
 public class SalesTest {
     @Test
@@ -22,7 +25,10 @@ public class SalesTest {
     }
 
     private SalesFacade thereIsSaleFacade() {
-        return new SalesFacade();
+        return new SalesFacade(
+                new InMemoryCartStorage(),
+                new OfferCalculator()
+        );
     }
 
     @Test
@@ -54,7 +60,7 @@ public class SalesTest {
     }
 
     @Test
-    void itDistinguishCartsByCUstomer(){
+    void itDistinguishCartsByCustomer(){
         String productA = thereIsProduct("Example", "desc", BigDecimal.valueOf(10));
         String productB = thereIsProduct("Example", "desc", BigDecimal.valueOf(20));
         String customerA = thereIsExampleCustomer("Wojtek");

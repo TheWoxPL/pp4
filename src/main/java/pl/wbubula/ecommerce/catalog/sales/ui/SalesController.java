@@ -1,11 +1,12 @@
-package pl.wbubula.ecommerce.catalog.sales;
+package pl.wbubula.ecommerce.catalog.sales.ui;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import pl.wbubula.ecommerce.catalog.sales.SalesFacade;
+import pl.wbubula.ecommerce.catalog.sales.offer.Offer;
+import pl.wbubula.ecommerce.catalog.sales.order.ReservationDetails;
 
 @RestController
 public class SalesController {

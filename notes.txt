@@ -1,3 +1,5 @@
 Testy sprawdzajace czy mozna dodac produkt bez opisu i obrazka, cos takiego
 
 Dopisac kod ktory zamieni cos tam storage za pomoca sql w interfejsie.
+
+co 5 produkt gratis oraz od powyzej 100zl 10% rabatu.

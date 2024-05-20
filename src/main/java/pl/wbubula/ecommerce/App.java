@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Configuration;
 import pl.wbubula.ecommerce.catalog.ProductCatalog;
 import pl.wbubula.ecommerce.catalog.SqlProductStorage;
 import pl.wbubula.ecommerce.catalog.sales.SalesFacade;
+import pl.wbubula.ecommerce.catalog.sales.cart.InMemoryCartStorage;
+import pl.wbubula.ecommerce.catalog.sales.offer.OfferCalculator;
 
 import java.math.BigDecimal;
 
@@ -31,6 +33,9 @@ public class App {
 
     @Bean
     SalesFacade createSales(){
-        return new SalesFacade();
+        return new SalesFacade(
+                new InMemoryCartStorage(),
+                new OfferCalculator()
+        );
     }
 }

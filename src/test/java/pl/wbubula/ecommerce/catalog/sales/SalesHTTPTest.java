@@ -1,6 +1,5 @@
 package pl.wbubula.ecommerce.catalog.sales;
 
-import com.sun.net.httpserver.HttpsServer;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,7 +17,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 import pl.wbubula.ecommerce.catalog.ProductCatalog;
-
+import pl.wbubula.ecommerce.catalog.sales.offer.AcceptOfferRequest;
+import pl.wbubula.ecommerce.catalog.sales.order.ReservationDetails;
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
