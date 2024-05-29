@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.wbubula.ecommerce.catalog.sales.SalesFacade;
 import pl.wbubula.ecommerce.catalog.sales.offer.Offer;
-import pl.wbubula.ecommerce.catalog.sales.order.ReservationDetails;
+import pl.wbubula.ecommerce.catalog.sales.reservation.ReservationDetails;
 
 @RestController
 public class SalesController {

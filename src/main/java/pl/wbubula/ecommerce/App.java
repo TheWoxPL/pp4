@@ -7,9 +7,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import pl.wbubula.ecommerce.catalog.ProductCatalog;
 import pl.wbubula.ecommerce.catalog.SqlProductStorage;
-import pl.wbubula.ecommerce.catalog.sales.SalesFacade;
+import pl.wbubula.ecommerce.catalog.sales.*;
 import pl.wbubula.ecommerce.catalog.sales.cart.InMemoryCartStorage;
 import pl.wbubula.ecommerce.catalog.sales.offer.OfferCalculator;
+import pl.wbubula.ecommerce.catalog.sales.reservation.ReservationRepository;
 
 import java.math.BigDecimal;
 
@@ -35,7 +36,9 @@ public class App {
     SalesFacade createSales(){
         return new SalesFacade(
                 new InMemoryCartStorage(),
-                new OfferCalculator()
+                new OfferCalculator(),
+                new PayUPaymentGateway(),
+                new ReservationRepository()
         );
     }
 }
