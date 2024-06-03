@@ -7,12 +7,14 @@ import pl.wbubula.ecommerce.catalog.ProductCatalog;
 import pl.wbubula.ecommerce.sales.cart.Cart;
 import pl.wbubula.ecommerce.sales.cart.CartLine;
 import pl.wbubula.ecommerce.sales.offer.OfferCalculator;
-import static org.assertj.core.api.Assertions.*;
+
 import java.math.BigDecimal;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @SpringBootTest
-public class OfferingCalculatorTest {
+public class OfferCalculatorTest {
 
 
     @Autowired
@@ -43,7 +45,9 @@ public class OfferingCalculatorTest {
         assertThat(result.getItemsCount())
                 .isEqualTo(15);
         assertThat(result.getTotal())
-                .isEqualTo(BigDecimal.valueOf(100.0));
+                .asString()
+                .isEqualTo("90.00");
+
     }
 
     private String thereIsProduct(String id) {
