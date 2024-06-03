@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import pl.wbubula.ecommerce.catalog.sales.cart.InMemoryCartStorage;
 import pl.wbubula.ecommerce.catalog.sales.offer.Offer;
 import pl.wbubula.ecommerce.catalog.sales.offer.OfferCalculator;
+import pl.wbubula.ecommerce.catalog.sales.reservation.ReservationRepository;
+import pl.wbubula.ecommerce.catalog.sales.reservation.SpyPaymentGateway;
 
 public class SalesTest {
     @Test
@@ -27,7 +29,9 @@ public class SalesTest {
     private SalesFacade thereIsSaleFacade() {
         return new SalesFacade(
                 new InMemoryCartStorage(),
-                new OfferCalculator()
+                new OfferCalculator(),
+                new SpyPaymentGateway(),
+                new ReservationRepository()
         );
     }
 
