@@ -1,6 +1,4 @@
-package pl.wbubula.ecommerce.catalog.sales.cart;
-
-import pl.wbubula.ecommerce.catalog.sales.cart.Cart;
+package pl.wbubula.ecommerce.sales.cart;
 
 import java.util.Optional;
 

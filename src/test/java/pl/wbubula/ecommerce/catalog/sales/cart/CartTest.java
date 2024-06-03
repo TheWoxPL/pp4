@@ -1,6 +1,8 @@
 package pl.wbubula.ecommerce.catalog.sales.cart;
 
 import org.junit.jupiter.api.Test;
+import pl.wbubula.ecommerce.sales.cart.Cart;
+import pl.wbubula.ecommerce.sales.cart.CartLine;
 
 import java.util.List;
 

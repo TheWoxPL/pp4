@@ -4,13 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import pl.wbubula.ecommerce.catalog.ProductCatalog;
 import pl.wbubula.ecommerce.catalog.SqlProductStorage;
 import pl.wbubula.ecommerce.catalog.sales.*;
-import pl.wbubula.ecommerce.catalog.sales.cart.InMemoryCartStorage;
-import pl.wbubula.ecommerce.catalog.sales.offer.OfferCalculator;
-import pl.wbubula.ecommerce.catalog.sales.reservation.ReservationRepository;
+import pl.wbubula.ecommerce.sales.SalesFacade;
+import pl.wbubula.ecommerce.sales.cart.InMemoryCartStorage;
+import pl.wbubula.ecommerce.sales.offer.OfferCalculator;
+import pl.wbubula.ecommerce.sales.reservation.ReservationRepository;
+import pl.wbubula.ecommerce.infrastructure.PayUPaymentGateway;
 
 import java.math.BigDecimal;
 

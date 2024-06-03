@@ -3,13 +3,15 @@ package pl.wbubula.ecommerce.catalog.sales.reservation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import pl.wbubula.ecommerce.catalog.sales.SalesFacade;
-import pl.wbubula.ecommerce.catalog.sales.cart.InMemoryCartStorage;
-import pl.wbubula.ecommerce.catalog.sales.offer.AcceptOfferRequest;
-import pl.wbubula.ecommerce.catalog.sales.offer.Offer;
-import pl.wbubula.ecommerce.catalog.sales.offer.OfferCalculator;
+import pl.wbubula.ecommerce.sales.SalesFacade;
+import pl.wbubula.ecommerce.sales.cart.InMemoryCartStorage;
+import pl.wbubula.ecommerce.sales.offer.AcceptOfferRequest;
+import pl.wbubula.ecommerce.sales.offer.OfferCalculator;
+import pl.wbubula.ecommerce.sales.reservation.CustomerDetails;
+import pl.wbubula.ecommerce.sales.reservation.Reservation;
+import pl.wbubula.ecommerce.sales.reservation.ReservationDetails;
+import pl.wbubula.ecommerce.sales.reservation.ReservationRepository;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
 
 import java.math.BigDecimal;
@@ -50,11 +52,13 @@ public class OfferAcceptanceTest {
         assertThereIsReservationWithId(reservationDetails.getReservationId());
         assertReservationIsPending(reservationDetails.getReservationId());
         assertReservationIsDoneForCustomer(reservationDetails.getReservationId(), "john", "doe", "jd@example.com");
-        ReservationTotalMatchOffer(reservationDetails.getReservationId(), BigDecimal.valueOf(20));
+        assertReservationTotalMatchOffer(reservationDetails.getReservationId(), BigDecimal.valueOf(20));
     }
 
-    private void ReservationTotalMatchOffer(String reservationId, BigDecimal expectedTotal) {
-        Optional<Reservation> loaded = reservationRepository.load(reservationId);
+    private void assertReservationTotalMatchOffer(String reservationId, BigDecimal expectedTotal) {
+        Reservation loaded = reservationRepository.load(reservationId)
+                .get();
+        assertThat(loaded.getTotal()).isEqualTo(expectedTotal);
     }
 
     private void assertReservationIsDoneForCustomer(String reservationId, String firstname, String lastname, String email) {

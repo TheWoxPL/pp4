@@ -1,9 +1,7 @@
-package pl.wbubula.ecommerce.catalog.sales.reservation;
+package pl.wbubula.ecommerce.sales.reservation;
 
 import java.util.HashMap;
 import java.util.Optional;
-
-import static com.fasterxml.jackson.databind.type.LogicalType.Map;
 
 public class ReservationRepository {
     HashMap<String, Reservation> reservations;

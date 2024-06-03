@@ -1,4 +1,4 @@
-package pl.wbubula.ecommerce.catalog.sales.cart;
+package pl.wbubula.ecommerce.sales.cart;
 
 public class CartLine {
     private final String productId;

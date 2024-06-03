@@ -4,10 +4,11 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import static org.junit.jupiter.api.Assertions.*;
 
-import pl.wbubula.ecommerce.catalog.sales.cart.InMemoryCartStorage;
-import pl.wbubula.ecommerce.catalog.sales.offer.Offer;
-import pl.wbubula.ecommerce.catalog.sales.offer.OfferCalculator;
-import pl.wbubula.ecommerce.catalog.sales.reservation.ReservationRepository;
+import pl.wbubula.ecommerce.sales.SalesFacade;
+import pl.wbubula.ecommerce.sales.cart.InMemoryCartStorage;
+import pl.wbubula.ecommerce.sales.offer.Offer;
+import pl.wbubula.ecommerce.sales.offer.OfferCalculator;
+import pl.wbubula.ecommerce.sales.reservation.ReservationRepository;
 import pl.wbubula.ecommerce.catalog.sales.reservation.SpyPaymentGateway;
 
 public class SalesTest {

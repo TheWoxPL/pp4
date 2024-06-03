@@ -1,4 +1,4 @@
-package pl.wbubula.ecommerce.hello;
+package pl.wbubula.hello;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

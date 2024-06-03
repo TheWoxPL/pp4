@@ -1,14 +1,16 @@
-package pl.wbubula.ecommerce.catalog.sales;
+package pl.wbubula.ecommerce.sales;
 
-import org.apache.catalina.Store;
-import pl.wbubula.ecommerce.catalog.sales.cart.Cart;
-import pl.wbubula.ecommerce.catalog.sales.cart.InMemoryCartStorage;
-import pl.wbubula.ecommerce.catalog.sales.offer.AcceptOfferRequest;
-import pl.wbubula.ecommerce.catalog.sales.offer.Offer;
-import pl.wbubula.ecommerce.catalog.sales.offer.OfferCalculator;
-import pl.wbubula.ecommerce.catalog.sales.reservation.Reservation;
-import pl.wbubula.ecommerce.catalog.sales.reservation.ReservationDetails;
-import pl.wbubula.ecommerce.catalog.sales.reservation.ReservationRepository;
+import pl.wbubula.ecommerce.sales.cart.Cart;
+import pl.wbubula.ecommerce.sales.cart.InMemoryCartStorage;
+import pl.wbubula.ecommerce.sales.offer.AcceptOfferRequest;
+import pl.wbubula.ecommerce.sales.offer.Offer;
+import pl.wbubula.ecommerce.sales.offer.OfferCalculator;
+import pl.wbubula.ecommerce.sales.payment.PaymentDetails;
+import pl.wbubula.ecommerce.sales.payment.PaymentGateway;
+import pl.wbubula.ecommerce.sales.payment.RegisterPaymentRequest;
+import pl.wbubula.ecommerce.sales.reservation.Reservation;
+import pl.wbubula.ecommerce.sales.reservation.ReservationDetails;
+import pl.wbubula.ecommerce.sales.reservation.ReservationRepository;
 
 import java.util.UUID;
 

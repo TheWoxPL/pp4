@@ -17,8 +17,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 import pl.wbubula.ecommerce.catalog.ProductCatalog;
-import pl.wbubula.ecommerce.catalog.sales.offer.AcceptOfferRequest;
-import pl.wbubula.ecommerce.catalog.sales.reservation.ReservationDetails;
+import pl.wbubula.ecommerce.sales.offer.AcceptOfferRequest;
+import pl.wbubula.ecommerce.sales.reservation.ReservationDetails;
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)

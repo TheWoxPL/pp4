@@ -1,4 +1,4 @@
-package pl.wbubula.ecommerce.catalog.sales;
+package pl.wbubula.ecommerce.sales.payment;
 
 public interface PaymentGateway {
     PaymentDetails registerPayment(RegisterPaymentRequest registerPaymentRequest);

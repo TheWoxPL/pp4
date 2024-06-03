@@ -1,6 +1,6 @@
-package pl.wbubula.ecommerce.catalog.sales;
+package pl.wbubula.ecommerce.sales.payment;
 
-import pl.wbubula.ecommerce.catalog.sales.offer.AcceptOfferRequest;
+import pl.wbubula.ecommerce.sales.offer.AcceptOfferRequest;
 
 import java.math.BigDecimal;
 

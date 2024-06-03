@@ -1,4 +1,4 @@
-package pl.wbubula.ecommerce.catalog.sales.offer;
+package pl.wbubula.ecommerce.sales.offer;
 
 import java.math.BigDecimal;
 

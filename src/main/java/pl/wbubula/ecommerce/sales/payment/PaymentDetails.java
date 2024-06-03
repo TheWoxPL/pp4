@@ -1,4 +1,4 @@
-package pl.wbubula.ecommerce.catalog.sales;
+package pl.wbubula.ecommerce.sales.payment;
 
 public class PaymentDetails {
     private final String url;

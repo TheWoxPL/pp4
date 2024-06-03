@@ -1,8 +1,8 @@
-package pl.wbubula.ecommerce.catalog.sales.reservation;
+package pl.wbubula.ecommerce.sales.reservation;
 
-import pl.wbubula.ecommerce.catalog.sales.PaymentDetails;
-import pl.wbubula.ecommerce.catalog.sales.offer.AcceptOfferRequest;
-import pl.wbubula.ecommerce.catalog.sales.offer.Offer;
+import pl.wbubula.ecommerce.sales.payment.PaymentDetails;
+import pl.wbubula.ecommerce.sales.offer.AcceptOfferRequest;
+import pl.wbubula.ecommerce.sales.offer.Offer;
 
 import java.math.BigDecimal;
 import java.time.Instant;
