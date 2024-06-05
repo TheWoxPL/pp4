@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import pl.wbubula.ecommerce.catalog.ProductCatalog;
 import pl.wbubula.ecommerce.catalog.SqlProductStorage;
-import pl.wbubula.ecommerce.catalog.sales.*;
 import pl.wbubula.ecommerce.sales.SalesFacade;
 import pl.wbubula.ecommerce.sales.cart.InMemoryCartStorage;
 import pl.wbubula.ecommerce.sales.offer.OfferCalculator;

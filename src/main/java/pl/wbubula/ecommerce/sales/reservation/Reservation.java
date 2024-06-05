@@ -10,7 +10,7 @@ import java.time.Instant;
 public class Reservation {
 
     private String reservationId;
-    private  CustomerDetails customerDetails;
+    private CustomerDetails customerDetails;
     private BigDecimal total;
     private Instant paidAt;
 
