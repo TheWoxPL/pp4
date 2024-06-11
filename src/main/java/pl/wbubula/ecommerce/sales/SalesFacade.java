@@ -41,6 +41,8 @@ public class SalesFacade {
         Cart cart = loadCartForCustomer(customerId);
 
         cart.addProduct(productId);
+        cartStorage.save(customerId, cart);
+
     }
 
     private Cart loadCartForCustomer(String customerId) {
