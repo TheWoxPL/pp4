@@ -1,5 +1,6 @@
 package pl.wbubula.ecommerce.catalog;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
@@ -10,12 +11,8 @@ import java.util.UUID;
 
 @Component
 public class SqlProductStorage implements ProductStorage{
-    private final JdbcTemplate jdbcTemplate;
-
-    public SqlProductStorage(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate=jdbcTemplate;
-    }
-
+    @Autowired
+    JdbcTemplate jdbcTemplate;
 
     public void setUpDatabase(){
         jdbcTemplate.execute("DROP TABLE `product_catalog__products` IF EXISTS;");

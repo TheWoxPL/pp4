@@ -15,16 +15,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class ProductCatalogTest {
     @Autowired
-    SqlProductStorage sqlProductStorage;
-    @Autowired
     ProductCatalog catalog;
 
 
     @BeforeEach
     void setUpDb() {
-        ProductCatalog catalog = new ProductCatalog(sqlProductStorage);
         catalog.setUpDatabase();
-
     }
 
 
@@ -41,14 +37,12 @@ public class ProductCatalogTest {
 
     @Test
     void itListAvailableProducts(){
-        ProductCatalog catalog = new ProductCatalog(sqlProductStorage);
         List<Product> products = catalog.allProducts();
         assert products.isEmpty();
     }
 
     @Test
     void itAllowsToAddProduct(){
-        ProductCatalog catalog = new ProductCatalog(sqlProductStorage);
 //        ProductCatalog catalog = new ProductCatalog(sqlProductStorage);
 
         List<Product> products = catalog.allProducts();
@@ -78,7 +72,6 @@ public class ProductCatalogTest {
 
     @Test
     void itAllowsChangePrice(){
-        ProductCatalog catalog = new ProductCatalog(sqlProductStorage);
         String id = catalog.addProduct("Lego set 8083", "Nice one", BigDecimal.valueOf(50));
 
         catalog.changePrice(id, BigDecimal.valueOf(10.10));

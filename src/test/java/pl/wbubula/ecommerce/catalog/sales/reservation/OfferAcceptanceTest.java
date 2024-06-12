@@ -2,7 +2,9 @@ package pl.wbubula.ecommerce.catalog.sales.reservation;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import pl.wbubula.ecommerce.catalog.SqlProductStorage;
 import pl.wbubula.ecommerce.sales.SalesFacade;
 import pl.wbubula.ecommerce.sales.cart.InMemoryCartStorage;
 import pl.wbubula.ecommerce.sales.offer.AcceptOfferRequest;
@@ -23,6 +25,8 @@ public class OfferAcceptanceTest {
     private SpyPaymentGateway spyPaymentGateway;
     private ReservationRepository reservationRepository;
 
+    @Autowired
+    SqlProductStorage sqlProductStorage;
 
     @BeforeEach
     void setUp(){
@@ -99,7 +103,7 @@ public class OfferAcceptanceTest {
     private SalesFacade thereIsSales() {
         return new SalesFacade(
                 new InMemoryCartStorage(),
-                new OfferCalculator(),
+                new OfferCalculator(sqlProductStorage),
                 spyPaymentGateway,
                 reservationRepository
         );

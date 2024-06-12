@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import pl.wbubula.ecommerce.catalog.SqlProductStorage;
 import pl.wbubula.ecommerce.sales.SalesFacade;
 import pl.wbubula.ecommerce.sales.cart.InMemoryCartStorage;
 import pl.wbubula.ecommerce.sales.offer.Offer;
@@ -11,7 +14,12 @@ import pl.wbubula.ecommerce.sales.offer.OfferCalculator;
 import pl.wbubula.ecommerce.sales.reservation.ReservationRepository;
 import pl.wbubula.ecommerce.catalog.sales.reservation.SpyPaymentGateway;
 
+@SpringBootTest
 public class SalesTest {
+
+    @Autowired
+    SqlProductStorage sqlProductStorage;
+
     @Test
     void itShowsOffers(){
         SalesFacade sales = thereIsSaleFacade();
@@ -30,7 +38,7 @@ public class SalesTest {
     private SalesFacade thereIsSaleFacade() {
         return new SalesFacade(
                 new InMemoryCartStorage(),
-                new OfferCalculator(),
+                new OfferCalculator(sqlProductStorage),
                 new SpyPaymentGateway(),
                 new ReservationRepository()
         );
