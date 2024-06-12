@@ -13,8 +13,12 @@ import java.util.List;
 
 @Component
 public class OfferCalculator {
-    @Autowired
+    final
     SqlProductStorage sqlProductStorage;
+
+    public OfferCalculator(SqlProductStorage sqlProductStorage) {
+        this.sqlProductStorage = sqlProductStorage;
+    }
 
     public Offer calculate(List<CartLine> lines) {
         int quantitySum = 0;

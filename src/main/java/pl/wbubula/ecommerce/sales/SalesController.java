@@ -26,14 +26,16 @@ public class SalesController {
     ReservationDetails acceptOffer(){
         String customerId = getCurrentCustomerId();
         ReservationDetails details = sales.acceptOffer(customerId);
+        System.out.println(details.getReservationId());
+        System.out.println("-------------------");
+        System.out.println("-------------------");
         return details;
     }
 
     @PostMapping("/api/add-to-cart/{productId}")
-    void addToCar(@PathVariable String productId){
+    void addToCart(@PathVariable("productId") String productId){
         String customerId = getCurrentCustomerId();
         sales.addToCart(customerId, productId);
-
     }
 
     private String getCurrentCustomerId(){

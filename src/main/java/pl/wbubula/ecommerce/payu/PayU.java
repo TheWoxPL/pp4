@@ -5,8 +5,11 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
+import pl.wbubula.ecommerce.sales.payment.PaymentDetails;
+import pl.wbubula.ecommerce.sales.payment.PaymentGateway;
+import pl.wbubula.ecommerce.sales.payment.RegisterPaymentRequest;
 
-public class PayU {
+public class PayU implements PaymentGateway {
 
     RestTemplate http;
     private final PayUCredentials payUCredentials;
@@ -49,5 +52,10 @@ public class PayU {
         );
 
         return atResponse.getBody().getAccessToken();
+    }
+
+    @Override
+    public PaymentDetails registerPayment(RegisterPaymentRequest registerPaymentRequest) {
+        return null;
     }
 }

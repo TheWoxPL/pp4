@@ -3,7 +3,6 @@
 const getProducts = () => {
   return fetch("/api/products")
   .then(response => response.json())
-  .then(response => console.log(response.json()))
 }
 
 const getCurrentOffer = () => {
@@ -12,8 +11,8 @@ const getCurrentOffer = () => {
 }
 
 const addProduct = (productId) => {
-  return fetch(`/api/add-product/${productId}`, {
-    method: "POST"
+  return fetch(`/api/add-to-cart/${productId}`, {
+    method: 'POST'
   });
  }
 
@@ -22,13 +21,13 @@ const acceptOffer = (acceptOfferRequest) => {
     method: "POST",
     headers: {
         "Content-Type": "application/json"
-    }
+    },
     body: JSON.stringify(acceptOfferRequest)
   })
     .then(response => response.json())
 }
 
-const checkoutForm = document.querySelector("checkout__form")
+const checkoutForm = document.querySelector(".checkout__form")
 checkoutForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
@@ -71,8 +70,8 @@ const refreshOffer = () => {
 
     getCurrentOffer()
         .then(offer => {
-            totalEl.textContent = `{offer.total}`PLN;
-            itemsEl.textContent = `{offer.itemsCount}`Items;
+            totalEl.textContent = `${offer.total}PLN`;
+            itemsEl.textContent = `${offer.itemsCount}Items`;
         }
         )
 
@@ -83,8 +82,8 @@ const initializerCartHandler = (productHtmlEl) => {
     addToCartBtn.addEventListener("click", () => {
         const productId = addToCartBtn.getAttribute("data-id");
 
-        addToCartBtn(productId)
-            .then(refreshOffer())
+        addProduct(productId)
+            .then(() => refreshOffer())
     })
 
     return productHtmlEl;

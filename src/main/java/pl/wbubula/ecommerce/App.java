@@ -14,7 +14,6 @@ import pl.wbubula.ecommerce.sales.cart.InMemoryCartStorage;
 import pl.wbubula.ecommerce.sales.offer.OfferCalculator;
 import pl.wbubula.ecommerce.sales.payment.PaymentGateway;
 import pl.wbubula.ecommerce.sales.reservation.ReservationRepository;
-import pl.wbubula.ecommerce.infrastructure.PayUPaymentGateway;
 
 import java.math.BigDecimal;
 
@@ -31,14 +30,14 @@ public class App {
     ProductCatalog createMyProductCatalog() {
         var catalog = new ProductCatalog(sqlProductStorage);
         catalog.setUpDatabase();
-        catalog.addProduct("Lego set 8083" , "Nice one", BigDecimal.valueOf(100));
-        catalog.addProduct("Cobi Blocks" , "Nice one" , BigDecimal.valueOf(140));
+        catalog.addProduct("Lego set 8083" , "Nice one", BigDecimal.valueOf(10));
+        catalog.addProduct("Cobi Blocks" , "Nice one" , BigDecimal.valueOf(5));
         return catalog;
     }
 
     @Bean
     PaymentGateway createPaymentGateway(){
-        return (PaymentGateway) new PayU(
+        return new PayU(
                 new RestTemplate(),
                 PayUCredentials.sandbox(
                         "300746",
@@ -52,7 +51,7 @@ public class App {
     SalesFacade createSales(){
         return new SalesFacade(
                 new InMemoryCartStorage(),
-                new OfferCalculator(),
+                new OfferCalculator(sqlProductStorage),
                 createPaymentGateway(),
                 new ReservationRepository()
         );
