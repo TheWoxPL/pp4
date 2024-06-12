@@ -1,10 +1,8 @@
 package pl.wbubula.ecommerce.sales;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.wbubula.ecommerce.sales.SalesFacade;
+import pl.wbubula.ecommerce.sales.offer.AcceptOfferRequest;
 import pl.wbubula.ecommerce.sales.offer.Offer;
 import pl.wbubula.ecommerce.sales.reservation.ReservationDetails;
 
@@ -23,12 +21,9 @@ public class SalesController {
     }
 
     @PostMapping("/api/accept-offer")
-    ReservationDetails acceptOffer(){
+    ReservationDetails acceptOffer(@RequestBody AcceptOfferRequest acceptOfferRequest){
         String customerId = getCurrentCustomerId();
-        ReservationDetails details = sales.acceptOffer(customerId);
-        System.out.println(details.getReservationId());
-        System.out.println("-------------------");
-        System.out.println("-------------------");
+        ReservationDetails details = sales.acceptOffer(customerId, acceptOfferRequest);
         return details;
     }
 

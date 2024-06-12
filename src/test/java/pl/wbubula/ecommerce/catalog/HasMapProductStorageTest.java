@@ -11,8 +11,7 @@ import static org.assertj.core.api.Assertions.*;
 
 public class HasMapProductStorageTest {
 
-
-    private static final Object TEST_PRODUCT_NAME = "test product";
+    private static final String TEST_PRODUCT_NAME = "test product";
 
     @Test
     void isStoreNewProduct(){
@@ -31,10 +30,8 @@ public class HasMapProductStorageTest {
     }
 
     private Product thereIsExampleProduct() {
-        return new Product(UUID.randomUUID(), "", "", BigDecimal.valueOf(100));
+        return new Product(UUID.randomUUID(), TEST_PRODUCT_NAME, "", BigDecimal.valueOf(100));
     }
-
-
 
     @Test
     void itLoadsAllProducts(){

@@ -51,10 +51,10 @@ public class App {
     }
 
     @Bean
-    SalesFacade createSales(SqlProductStorage sqlProductStorage){
+    SalesFacade createSales(ProductCatalog catalog){
         return new SalesFacade(
                 new InMemoryCartStorage(),
-                new OfferCalculator(sqlProductStorage),
+                new OfferCalculator(catalog),
                 createPaymentGateway(),
                 new ReservationRepository()
         );

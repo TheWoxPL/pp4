@@ -1,5 +1,7 @@
 package pl.wbubula.ecommerce.catalog.sales;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
+import org.springframework.web.servlet.function.EntityResponse;
 import pl.wbubula.ecommerce.catalog.ProductCatalog;
 import pl.wbubula.ecommerce.sales.offer.AcceptOfferRequest;
 import pl.wbubula.ecommerce.sales.reservation.ReservationDetails;
@@ -32,9 +35,10 @@ public class SalesHTTPTest {
     @Autowired
     ProductCatalog catalog;
 
+
     @Test
-    void itAcceptsOfferHappyPath(){
-        var productId = thereIsExampleProduct("Example product", BigDecimal.valueOf(10));
+    void itAcceptsOfferHappyPath() throws JsonProcessingException {
+        var productId = thereIsExampleProduct("Example product", "Description", BigDecimal.valueOf(10));
         //ACT
         //add to car
         var uri = String.format("api/add-to-cart/%s", productId);
@@ -46,20 +50,24 @@ public class SalesHTTPTest {
         //accept offer
         AcceptOfferRequest acceptOfferRequest = new AcceptOfferRequest();
         acceptOfferRequest
-                .setFirstname("Jakub")
-                .setLastname("asd")
-                .setEmail("asd");
+                .setFirstname("John")
+                .setLastname("Doe")
+                .setEmail("john.doe@gmail.com");
 
         var acceptOfferUrl = String.format("http://localhost:%s/%s", port, "api/accept-offer");
-        ResponseEntity<ReservationDetails> reservationResponse = http.postForEntity(acceptOfferUrl, acceptOfferRequest, ReservationDetails.class);
+        ResponseEntity<String> reservationResponse = http.postForEntity(acceptOfferUrl, acceptOfferRequest, String.class);
+        ObjectMapper objectMapper = new ObjectMapper();
+        ReservationDetails response = objectMapper.readValue(reservationResponse.getBody(), ReservationDetails.class);
+
+
         assertEquals(HttpStatus.OK, reservationResponse.getStatusCode());
-        assertEquals(BigDecimal.valueOf(10), reservationResponse.getBody().getTotal());
-        assertNotNull(reservationResponse.getBody().getReservationId());
-        assertNotNull(reservationResponse.getBody().getPaymentURL());
+        assertEquals(new BigDecimal("10.0"), response.getTotal());
+        assertNotNull(response.getReservationId());
+        assertNotNull(response.getPaymentURL());
     }
 
-    private Object thereIsExampleProduct(String name, BigDecimal price) {
-        var prodId = catalog.addProduct(name, "desc", price);
+    private Object thereIsExampleProduct(String name, String description, BigDecimal price) {
+        var prodId = catalog.addProduct(name, description, price);
         return prodId;
     }
 }

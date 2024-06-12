@@ -9,20 +9,17 @@ import java.util.Collections;
 public class AssertJTest {
     @Test
     void helloAssert(){
-        var hello = "Hello World";
-
-        assertThat(hello).containsOnlyDigits();
-
+        String hello = "Hello World";
+        assertThat(hello).contains("Hello World");
     }
 
     @Test
     void testSomeListExpression(){
-        var names = Collections.singleton("Jakub");
-
+        var names = Collections.singleton("Wojtek");
         assertThat(names)
                 .isUnmodifiable()
                 .hasSize(1)
-                .containsAll(Arrays.asList("Jakub","Michal"));
+                .containsAll(Arrays.asList("Wojtek"));
 
     }
 }

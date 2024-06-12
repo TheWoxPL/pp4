@@ -13,11 +13,12 @@ import java.util.List;
 
 @Component
 public class OfferCalculator {
-    final
-    SqlProductStorage sqlProductStorage;
 
-    public OfferCalculator(SqlProductStorage sqlProductStorage) {
-        this.sqlProductStorage = sqlProductStorage;
+    private final ProductCatalog catalog;
+
+    @Autowired
+    public OfferCalculator(ProductCatalog catalog) {
+        this.catalog = catalog;
     }
 
     public Offer calculate(List<CartLine> lines) {
@@ -26,9 +27,9 @@ public class OfferCalculator {
 
         for (CartLine cartLine : lines) {
             quantitySum += cartLine.getQty();
-            Product product = sqlProductStorage.getProductById(cartLine.getProductId());
+            Product product = catalog.getProductById(cartLine.getProductId());
             BigDecimal productPrice = product.getPrice();
-            int nthForFree = 5;
+            int nthForFree = 5; // every 5nth product for free
             int quantity = cartLine.getQty() - cartLine.getQty() / nthForFree;
             BigDecimal lineTotal = BigDecimal.valueOf(quantity).multiply(productPrice);
             finalPriceArray.add(lineTotal);

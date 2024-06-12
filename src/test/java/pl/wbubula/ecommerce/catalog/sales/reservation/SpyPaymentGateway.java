@@ -4,6 +4,8 @@ import pl.wbubula.ecommerce.sales.payment.PaymentDetails;
 import pl.wbubula.ecommerce.sales.payment.PaymentGateway;
 import pl.wbubula.ecommerce.sales.payment.RegisterPaymentRequest;
 
+import java.util.UUID;
+
 public class SpyPaymentGateway implements PaymentGateway {
     Integer requestCount = 0;
     public Integer getRequestsCount() {
@@ -13,6 +15,6 @@ public class SpyPaymentGateway implements PaymentGateway {
     @Override
     public PaymentDetails registerPayment(RegisterPaymentRequest registerPaymentRequest) {
         this.requestCount++;
-        return new PaymentDetails("http://spy-gateway");
+        return new PaymentDetails("http://spy-gateway", UUID.randomUUID().toString());
     }
 }

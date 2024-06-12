@@ -8,10 +8,6 @@ import java.util.List;
 import java.util.UUID;
 
 public class ProductCatalog {
-
-
-    @Autowired
-    JdbcTemplate jdbcTemplate;
     SqlProductStorage productStorage;
 
     @Autowired

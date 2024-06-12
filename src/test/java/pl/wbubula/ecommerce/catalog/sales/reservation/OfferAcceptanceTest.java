@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import pl.wbubula.ecommerce.catalog.ProductCatalog;
 import pl.wbubula.ecommerce.catalog.SqlProductStorage;
 import pl.wbubula.ecommerce.sales.SalesFacade;
 import pl.wbubula.ecommerce.sales.cart.InMemoryCartStorage;
@@ -26,7 +27,7 @@ public class OfferAcceptanceTest {
     private ReservationRepository reservationRepository;
 
     @Autowired
-    SqlProductStorage sqlProductStorage;
+    ProductCatalog catalog;
 
     @BeforeEach
     void setUp(){
@@ -37,7 +38,7 @@ public class OfferAcceptanceTest {
     void itAllowsToAcceptAnOffer(){
         SalesFacade sales = thereIsSales();
         String customerId = thereIsCustomer("Wojtek");
-        String productId= thereIsProduct("X", BigDecimal.valueOf(10));
+        String productId= thereIsProduct("Product 1", "Desc", BigDecimal.valueOf(10));
 
         sales.addToCart(customerId, productId);
         sales.addToCart(customerId, productId);
@@ -56,7 +57,7 @@ public class OfferAcceptanceTest {
         assertThereIsReservationWithId(reservationDetails.getReservationId());
         assertReservationIsPending(reservationDetails.getReservationId());
         assertReservationIsDoneForCustomer(reservationDetails.getReservationId(), "john", "doe", "jd@example.com");
-        assertReservationTotalMatchOffer(reservationDetails.getReservationId(), BigDecimal.valueOf(20));
+        assertReservationTotalMatchOffer(reservationDetails.getReservationId(), BigDecimal.valueOf(20.0));
     }
 
     private void assertReservationTotalMatchOffer(String reservationId, BigDecimal expectedTotal) {
@@ -70,7 +71,6 @@ public class OfferAcceptanceTest {
                 .get();
 
         CustomerDetails clientData = loaded.getCustomerDetails();
-
         assertThat(clientData.getFirstname()).isEqualTo(firstname);
         assertThat(clientData.getLastname()).isEqualTo(lastname);
         assertThat(clientData.getEmail()).isEqualTo(email);
@@ -92,8 +92,8 @@ public class OfferAcceptanceTest {
         assertThat(spyPaymentGateway.getRequestsCount()).isEqualTo(1);
     }
 
-    private String thereIsProduct(String productId, BigDecimal price) {
-        return productId;
+    private String thereIsProduct(String name, String desc, BigDecimal price) {
+        return catalog.addProduct(name, desc, price);
     }
 
     private String thereIsCustomer(String id) {
@@ -103,7 +103,7 @@ public class OfferAcceptanceTest {
     private SalesFacade thereIsSales() {
         return new SalesFacade(
                 new InMemoryCartStorage(),
-                new OfferCalculator(sqlProductStorage),
+                new OfferCalculator(catalog),
                 spyPaymentGateway,
                 reservationRepository
         );

@@ -33,10 +33,6 @@ public class SalesFacade {
         return offerCalculator.calculate(cart.getLines());
     }
 
-    public ReservationDetails acceptOffer(String customerId) {
-        return new ReservationDetails();
-    }
-
     public void addToCart(String customerId, String productId) {
         Cart cart = loadCartForCustomer(customerId);
 
@@ -54,6 +50,8 @@ public class SalesFacade {
         String reservationId = UUID.randomUUID().toString();
         Offer offer = this.getCurrentOffer(customerId);
 
+
+
         PaymentDetails paymentDetails = paymentGateway.registerPayment(
                 RegisterPaymentRequest.of(reservationId, acceptOfferRequest, offer.getTotal())
         );
@@ -66,8 +64,7 @@ public class SalesFacade {
         );
 
         reservationRepository.add(reservation);
-
-        return new ReservationDetails(reservationId, paymentDetails.getPaymentURL());
+        return new ReservationDetails(reservationId, paymentDetails.getPaymentURL(), offer.getTotal());
     }
 
 }

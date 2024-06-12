@@ -21,7 +21,33 @@ public class OfferingCalculatorTest {
     ProductCatalog catalog;
 
     @Test
-    void itCalculatesOffer(){
+    void itCalculatesOfferS1(){
+        Cart cart = Cart.empty();
+        catalog.setUpDatabase();
+        catalog.addProduct("Lego set 8083" , "Nice one", BigDecimal.valueOf(10));
+        catalog.addProduct("Cobi Blocks" , "Nice one" , BigDecimal.valueOf(5));
+        String productId1 = catalog.allProducts().get(0).getId();
+        String productId2 = catalog.allProducts().get(1).getId();
+
+        for (int i = 0; i < 11; i++) {
+            cart.addProduct(productId1);
+        }
+
+        for (int i = 0; i < 5; i++) {
+            cart.addProduct(productId2);
+        }
+
+        List<CartLine> lines = cart.getLines();
+        var result = offerCalculator.calculate(lines);
+
+        assertThat(result.getItemsCount())
+                .isEqualTo(16);
+        assertThat(result.getTotal())
+                .isEqualTo(new BigDecimal("99.00"));
+    }
+
+    @Test
+    void itCalculatesOfferS2(){
         Cart cart = Cart.empty();
         catalog.setUpDatabase();
         catalog.addProduct("Lego set 8083" , "Nice one", BigDecimal.valueOf(10));
@@ -43,7 +69,33 @@ public class OfferingCalculatorTest {
         assertThat(result.getItemsCount())
                 .isEqualTo(15);
         assertThat(result.getTotal())
-                .isEqualTo(BigDecimal.valueOf(100.0));
+                .isEqualTo(new BigDecimal("90.00"));
+    }
+
+    @Test
+    void itCalculatesOfferS3(){
+        Cart cart = Cart.empty();
+        catalog.setUpDatabase();
+        catalog.addProduct("Lego set 8083" , "Nice one", BigDecimal.valueOf(10));
+        catalog.addProduct("Cobi Blocks" , "Nice one" , BigDecimal.valueOf(5));
+        String productId1 = catalog.allProducts().get(0).getId();
+        String productId2 = catalog.allProducts().get(1).getId();
+
+        for (int i = 0; i < 9; i++) {
+            cart.addProduct(productId1);
+        }
+
+        for (int i = 0; i < 4; i++) {
+            cart.addProduct(productId2);
+        }
+
+        List<CartLine> lines = cart.getLines();
+        var result = offerCalculator.calculate(lines);
+
+        assertThat(result.getItemsCount())
+                .isEqualTo(13);
+        assertThat(result.getTotal())
+                .isEqualTo(new BigDecimal("90.00"));
     }
 
     private String thereIsProduct(String id) {

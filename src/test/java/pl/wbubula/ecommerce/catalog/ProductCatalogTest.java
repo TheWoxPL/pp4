@@ -51,7 +51,7 @@ public class ProductCatalogTest {
        catalog.addProduct("Lego set 8083", "Nice one", BigDecimal.valueOf(100));
        catalog.addProduct("Lego set 8083", "Nice one", BigDecimal.valueOf(100));
        catalog.addProduct("Lego set 8083", "Nice one", BigDecimal.valueOf(100));
-        catalog.allProducts();
+       catalog.allProducts();
        products = catalog.allProducts();
 
         assertThat(products)
@@ -79,5 +79,4 @@ public class ProductCatalogTest {
 
         assertThat(BigDecimal.valueOf(10.10)).isEqualTo(loaded.getPrice());
     }
-
 }
