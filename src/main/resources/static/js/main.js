@@ -37,9 +37,11 @@ checkoutForm.addEventListener("submit", (event) => {
         email: checkoutForm.querySelector('input[name="email"].value')
     }
 
-   acceptOffer(acceptOfferRequest)
-    .then(reservationDetails => console.log(reservationDetails))
-
+    acceptOffer(acceptOfferRequest)
+        .then(reservationDetails => {
+            console.log(reservationDetails)
+            window.location.href = reservationDetails.paymentURL;
+        })
 })
 
 
