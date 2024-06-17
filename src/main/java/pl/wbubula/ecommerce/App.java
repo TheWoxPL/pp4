@@ -33,8 +33,28 @@ public class App {
     ProductCatalog createMyProductCatalog(SqlProductStorage sqlProductStorage) {
         var catalog = new ProductCatalog(sqlProductStorage);
         catalog.setUpDatabase();
-        catalog.addProduct("Lego set 8083" , "Nice one", BigDecimal.valueOf(10));
-        catalog.addProduct("Cobi Blocks" , "Nice one" , BigDecimal.valueOf(5));
+
+        catalog.addProduct("Cobi Blocks", "Klocki konstrukcyjne, zestaw 250 elementów", BigDecimal.valueOf(10));
+        catalog.addProduct("LEGO City", "Zestaw Policja, 300 elementów", BigDecimal.valueOf(5));
+        catalog.addProduct("Mattel Barbie", "Lalka Barbie z akcesoriami", BigDecimal.valueOf(20));
+        catalog.addProduct("Hot Wheels Track", "Tor wyścigowy z samochodzikami", BigDecimal.valueOf(49.99));
+        catalog.addProduct("Nerf N-Strike", "Wyrzutnia Nerf z 10 strzałkami", BigDecimal.valueOf(89.99));
+        catalog.addProduct("Play-Doh", "Zestaw ciastolin z formami", BigDecimal.valueOf(29.99));
+        catalog.addProduct("Hasbro Monopoly", "Gra planszowa Monopoly Classic", BigDecimal.valueOf(119.99));
+        catalog.addProduct("Fisher-Price", "Interaktywny stolik edukacyjny", BigDecimal.valueOf(149.99));
+        catalog.addProduct("Spin Master Paw Patrol", "Figurki Psiego Patrolu, zestaw 6 szt.", BigDecimal.valueOf(69.99));
+        catalog.addProduct("Disney Puzzle", "Puzzle 1000 elementów, motyw Disney", BigDecimal.valueOf(39.99));
+        catalog.addProduct("Crayola", "Zestaw kredek i markerów, 50 szt.", BigDecimal.valueOf(19.99));
+        catalog.addProduct("Jenga", "Gra zręcznościowa Jenga Classic", BigDecimal.valueOf(59.99));
+        catalog.addProduct("UNO", "Gra karciana UNO", BigDecimal.valueOf(14.99));
+        catalog.addProduct("TREFL Puzzle", "Puzzle 500 elementów, krajobraz", BigDecimal.valueOf(24.99));
+        catalog.addProduct("Mega Bloks", "Klocki konstrukcyjne dla dzieci, zestaw 100 elementów", BigDecimal.valueOf(49.99));
+        catalog.addProduct("Ravensburger", "Gra logiczna Labirynt", BigDecimal.valueOf(89.99));
+        catalog.addProduct("Bruder", "Model traktora z akcesoriami", BigDecimal.valueOf(129.99));
+        catalog.addProduct("Hape", "Drewniana kuchnia dla dzieci z akcesoriami", BigDecimal.valueOf(199.99));
+        catalog.addProduct("VTech", "Interaktywny smartfon dla dzieci", BigDecimal.valueOf(34.99));
+        catalog.addProduct("Dickie Toys", "Radiowo sterowany samochód wyścigowy", BigDecimal.valueOf(79.99));
+
         return catalog;
     }
 
