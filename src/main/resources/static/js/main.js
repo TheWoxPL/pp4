@@ -51,16 +51,25 @@ checkoutForm.addEventListener("submit", (event) => {
 
 
 const createProductHtml = (productData) => {
+    let randId = Math.floor(Math.random() * 59);
     const template = `
-        <div>
-            <h4>${productData.name}</h4>
-            <span>${productData.price}</span>
-            <img src="https://picsum.photos/id/237/200/300"/>
-            <button data-id="${productData.id}">Add to cart</button>
+        <div class="product">
+            <div class="product__left">
+                <img src="https://picsum.photos/id/${randId}/200/300" alt="">
+            </div>
+            <div class="product__right">
+                <div class="product__name">${productData.name}</div>
+                <div class="product__description">${productData.description}</div>
+                <div class="product__price">Cena: ${productData.price} PLN</div>
+                <div class="product__button">
+                    <button data-id="${productData.id}">Add</button>
+                </div>
+            </div>
         </div>
     `
 
-    const productEl = document.createElement('li');
+    const productEl = document.createElement('div');
+    productEl.className = "product";
     productEl.innerHTML = template.trim();
 
     return productEl;
@@ -72,8 +81,8 @@ const refreshOffer = () => {
 
     getCurrentOffer()
         .then(offer => {
-            totalEl.textContent = `${offer.total}PLN`;
-            itemsEl.textContent = `${offer.itemsCount}Items`;
+            totalEl.textContent = `${offer.total} PLN`;
+            itemsEl.textContent = `${offer.itemsCount} Items`;
         }
         )
 
@@ -92,7 +101,7 @@ const initializerCartHandler = (productHtmlEl) => {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    const productsListEl = document.querySelector("#productsList");
+    const productsListEl = document.querySelector(".catalog");
     getProducts()
         .then(productsAsJsonObj => productsAsJsonObj.map(createProductHtml))
         .then(productsAsHtmlEl => productsAsHtmlEl.map(initializerCartHandler))

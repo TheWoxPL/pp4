@@ -1,43 +1,52 @@
 <html lang="en">
-<head>
-    <title>
-        My Ecommerce
-    </title>
+  <head>
+    <title>My Ecommerce</title>
     <link rel="stylesheet" href="css/main.css" />
-</head>
-<body>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">Welcome to my ecommerce shop</div>
+      <div class="catalog">
+          
+        
+        
 
-<h1>
-    Welcome here
-</h1>
-
-
-
-
-
-
-
-
-
-<header>
-    <div class="offer">
-        Total: <span class="offer__total">0.0</span>
-        Items Count: <span class="offer__ItemsCount">0</span>
+      </div>
+      <div class="checkout">
         <form class="checkout__form">
-            <input name="fname" placeholder="john"/>
-            <input name="lname" placeholder="cena"/>
-            <input name="lastname" type="email" placeholder="john.cena@example.com"/>
+          <div>
+            <span class="input__field">
+              <label for="fname">First name:&nbsp</label>
+              <input name="fname" id="fname" placeholder="john" />
+            </span>
+            <span class="input__field">
+              <label for="lname">Last name:&nbsp</label>
+              <input name="lname" id="lname" placeholder="doe" />
+            </span>
+            <span class="input__field">
+              <label for="email">Email:&nbsp</label>
+              <input
+                name="lastname"
+                id="email"
+                type="email"tal: 0.0
+                placeholder="john.doe@example.com"
+              />
+            </span>
+          </div>
+          <div>
+            <span> Total: <span class="offer__total">0.0</span></span>
+            <span> Items Count: <span class="offer__ItemsCount">0</span> </span>
+          </div>
+          <div>
             <button type="submit">Checkout</button>
+          </div>
         </form>
+      </div>
     </div>
-</header>
-<ul id="productsList" ></ul>
 
+  </body>
 
-</body>
-
-
-<script type="text/javascript" src="js/main.js">
+  <script type="text/javascript" src="js/main.js">
     console.log("Asd")
-</script>
+  </script>
 </html>
