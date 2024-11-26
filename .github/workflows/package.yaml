@@ -1,8 +1,13 @@
 name: Create package
-on: [push]
+on:
+  push:
+    tags:
+      - "v*.*.*"
 jobs:
   BuildPackage:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: "Checkout repo"
         uses: actions/checkout@v4
@@ -14,3 +19,8 @@ jobs:
         run: "mvn -DskipTests package"
       - run: ls -la target/
       - run: mv target/*.jar target/app.jar
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "target/app.jar"
+          body: "My release ${{ github.ref }}"
+          name: "Release cadidate ${{ github.ref }}"
